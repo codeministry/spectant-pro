@@ -12,6 +12,7 @@ export const de: Dict = {
     roadmap: 'Roadmap',
     github: 'Auf GitHub folgen',
     switchLabel: 'English',
+    theme: { toLight: 'Zum hellen Farbschema wechseln', toDark: 'Zum dunklen Farbschema wechseln' },
     skip: 'Zum Inhalt springen',
   },
   hero: {

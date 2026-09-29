@@ -1,6 +1,7 @@
 ---
 import GithubMark from './GithubMark.astro';
 import Logo from './Logo.astro';
+import ThemeToggle from './ThemeToggle.astro';
 import { GITHUB_URL } from '../site.config';
 import { homePath, otherLocale, t } from '../i18n/utils';
 import type { Locale } from '../i18n/types';
@@ -27,6 +28,7 @@ const anchor = (id: string) => (home === '/' ? `/#${id}` : `${home}#${id}`);
     <div class="flex items-center gap-1 sm:gap-2">
       <a href={anchor('how')} class="btn btn-ghost btn-sm hidden font-medium md:inline-flex">{dict.nav.how}</a>
       <a href={anchor('roadmap')} class="btn btn-ghost btn-sm hidden font-medium md:inline-flex">{dict.nav.roadmap}</a>
+      <ThemeToggle labels={dict.nav.theme} />
       <a href={switchHref} hreflang={other} lang={other} class="btn btn-ghost btn-sm font-mono text-xs uppercase">
         <span class="sr-only">{dict.nav.switchLabel}</span>
         <span aria-hidden="true">{other}</span>

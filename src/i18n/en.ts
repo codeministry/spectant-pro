@@ -12,6 +12,7 @@ export const en: Dict = {
     roadmap: 'Roadmap',
     github: 'Watch on GitHub',
     switchLabel: 'Deutsch',
+    theme: { toLight: 'Switch to light theme', toDark: 'Switch to dark theme' },
     skip: 'Skip to content',
   },
   hero: {

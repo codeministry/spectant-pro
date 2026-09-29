@@ -1,0 +1,58 @@
+---
+// Light/dark switch. Dark is the default; the choice is kept in localStorage and applied before paint by Base.astro.
+// The label names the action (as the icon does), so the button carries no pressed state.
+import Icon from './Icon.astro';
+
+interface Props {
+  labels: { toLight: string; toDark: string };
+}
+
+const { labels } = Astro.props;
+---
+
+<button
+  type="button"
+  class="btn btn-ghost btn-sm btn-square"
+  aria-label={labels.toLight}
+  title={labels.toLight}
+  data-theme-toggle
+  data-label-light={labels.toLight}
+  data-label-dark={labels.toDark}
+>
+  <Icon name="Sun" class="theme-icon-sun size-4" />
+  <Icon name="Moon" class="theme-icon-moon size-4" />
+</button>
+
+<script>
+  const LIGHT = 'spectant-light';
+  const DARK = 'spectant-dark';
+  const COLORS = { [LIGHT]: '#f6f1ef', [DARK]: '#221f22' };
+
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]');
+
+  function apply(theme: typeof LIGHT | typeof DARK) {
+    root.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', COLORS[theme]);
+    buttons.forEach((b) => {
+      const label = (theme === LIGHT ? b.dataset.labelDark : b.dataset.labelLight) ?? '';
+      b.setAttribute('aria-label', label);
+      b.title = label;
+    });
+  }
+
+  apply(root.dataset.theme === LIGHT ? LIGHT : DARK);
+
+  buttons.forEach((b) =>
+    b.addEventListener('click', () => {
+      const next = root.dataset.theme === LIGHT ? DARK : LIGHT;
+      apply(next);
+      try {
+        if (next === LIGHT) localStorage.setItem('theme', 'light');
+        else localStorage.removeItem('theme');
+      } catch {
+        // Storage blocked: the switch still works for this page view.
+      }
+    }),
+  );
+</script>

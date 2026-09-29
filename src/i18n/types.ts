@@ -15,7 +15,14 @@ export interface RoadmapItem {
 
 export interface Dict {
   meta: { title: string; description: string; ogLocale: string };
-  nav: { how: string; roadmap: string; github: string; switchLabel: string; skip: string };
+  nav: {
+    how: string;
+    roadmap: string;
+    github: string;
+    switchLabel: string;
+    theme: { toLight: string; toDark: string };
+    skip: string;
+  };
   hero: {
     badge: string;
     titleA: string;
