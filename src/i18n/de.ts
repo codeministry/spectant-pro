@@ -8,6 +8,8 @@ export const de: Dict = {
     ogLocale: 'de_DE',
   },
   nav: {
+    workflow: 'Chat + App',
+    preview: 'Vorschau',
     how: 'So funktioniert’s',
     roadmap: 'Roadmap',
     github: 'Auf GitHub folgen',
@@ -19,7 +21,7 @@ export const de: Dict = {
     badge: 'In aktiver Entwicklung · Pre-Release',
     titleA: 'Alle Specs.',
     titleB: 'Ein Tab.',
-    lead: 'spectant ist der lokale Spec-Begleiter für Entwickler. Ein einzelnes Binary liest die Markdown-Specs aller Repositories, die du registrierst, und zeigt, wo jede steht, was als Nächstes kommt und was Aufmerksamkeit braucht. Es läuft auf deinem Rechner, und nichts verlässt ihn.',
+    lead: 'spectant ist der lokale Spec-Begleiter für Entwickler. Ein einzelnes Binary liest die Markdown-Specs aller Repositories, die du registrierst, und zeigt, wo jede steht, was als Nächstes kommt und was Aufmerksamkeit braucht. Es bringt einen Spec-Skill für Claude Code mit: Du steuerst die Arbeit direkt aus dem KI-Chat, die App behält daneben den Überblick. Es läuft auf deinem Rechner, und nichts verlässt ihn.',
     ctaPrimary: 'Auf GitHub folgen',
     ctaSecondary: 'So funktioniert’s',
     installSoon: 'bald verfügbar',
@@ -32,6 +34,49 @@ export const de: Dict = {
     repos: 'Repos',
     claims: 'Claims',
     live: 'live',
+  },
+  duo: {
+    eyebrow: 'Chat + App',
+    title: 'Im Chat arbeiten. In der App den Überblick behalten.',
+    lead: 'spectant bringt einen Spec-Skill für Claude Code mit. Du formst, planst und baust deine Specs direkt aus dem KI-Chat, und der Skill schreibt reines Markdown in dein Repository. Die App läuft daneben und zeigt live, wo jede Spec steht und was deine Agenten gerade tun.',
+    chat: {
+      label: 'Im KI-Chat',
+      badge: 'Claude Code',
+      title: 'Der Skill erledigt die Arbeit',
+      text: 'Aus einer Idee werden Spec, Plan und Tasks, die du dann mit deinem Agenten abarbeitest. Wenige Befehle, die man sich merken kann, und jedes Ergebnis landet als Markdown in deinem Repo.',
+      lines: [
+        '/spec-implement 002',
+        'Lese specs/002-web-console/tasks.md',
+        'T14 · ISC-334 ist frei, lege los',
+        'Probe grün, T14 in tasks.md abgehakt',
+        'Als Nächstes: T15 wartet auf deine Antwort zu T19',
+      ],
+    },
+    app: {
+      label: 'Daneben, in der App',
+      title: 'Die App behält den Überblick',
+      text: 'Jede Spec aus all deinen Repositories, was als Nächstes kommt, was auf dich wartet und welcher Agent welchen Task hält. Du behältst die Kontrolle, ohne ein einziges Log zu lesen.',
+      rows: [
+        { id: '002', name: 'Web console', stage: 'implementing', progress: '19/26' },
+        { id: '003', name: 'Config loader', stage: 'tasked', progress: '0/13' },
+        { id: '004', name: 'Retention policies', stage: 'closed', progress: '30/30' },
+      ],
+      waiting: 'Wartet auf dich: T19 · ETag-Poll behalten?',
+      updated: 'gerade aktualisiert',
+    },
+    bridge: 'Dieselben Markdown-Dateien, kein Sync dazwischen',
+    agents: 'Gebaut für Claude Code. Der Skill folgt dem offenen Agent-Skills-Format, andere Coding-Agenten, die Skills laden, sollten ihn also ebenfalls nutzen können.',
+    planned: {
+      title: 'Geplant: Chat und App rücken zusammen',
+      items: [
+        { title: 'Antworten in der App', text: 'Offene Fragen des Agenten direkt dort beantworten, wo die App sie zeigt. spectant schreibt deine Antwort als Markdown in die Spec, und der Agent liest sie beim nächsten Durchlauf.' },
+        { title: 'MCP-Server', text: 'spectant stellt Specs, nächste Schritte und offene Fragen als Werkzeuge bereit, damit dein Agent „was ist in diesem Repo als Nächstes dran?“ aus dem Live-Modell beantwortet statt zu raten.' },
+        { title: 'Im Chat öffnen', text: 'Jeder nächste Schritt, jede Warnung und jede offene Frage bekommt eine Kopier-Aktion, die den passenden Befehl samt Kontext als fertigen Prompt für deinen Chat in die Zwischenablage legt.' },
+        { title: 'Lokales Modell im Seitenpanel', text: 'Ein Seitenpanel zum Einschalten, mit einem lokalen Modell über Ollama oder auf Wunsch deinem eigenen API-Schlüssel. Es beantwortet Fragen zu deinen Specs und schreibt nie.' },
+        { title: 'Agent-Feed', text: 'Hooks melden jeden Schritt des Agenten an die App: Task begonnen, Probe rot oder grün, Frage gestellt. Der Feed hinter dem Live-Board.' },
+        { title: 'Über Claude Code hinaus', text: 'Der Spec-Skill für andere Coding-Agenten, die Skills laden: getestet und dokumentiert, nicht nur angenommen.' },
+      ],
+    },
   },
   features: {
     eyebrow: 'Was es kann',
@@ -56,8 +101,8 @@ export const de: Dict = {
         stage: 'first',
       },
       {
-        title: 'Nur lesend, by design',
-        text: 'spectant schreibt nie in deine registrierten Repositories, nicht einmal in .git. Deine Dateien bleiben deine.',
+        title: 'Jede Änderung nachvollziehbar',
+        text: 'spectant schreibt nur, was du in der App setzt, etwa Status, Review-Vermerk oder Checkbox. Alles landet in versionierten Dateien, git zeigt jede Änderung.',
         stage: 'first',
       },
       {
@@ -66,8 +111,8 @@ export const de: Dict = {
         stage: 'later',
       },
       {
-        title: 'Claude-Code-Plugin',
-        text: 'Spec-getriebenes Arbeiten mit einem Plugin, dessen wenige Befehle man sich merken kann. Es schreibt nur Markdown.',
+        title: 'Spec-Skill für Claude Code',
+        text: 'Spec-getriebenes Arbeiten direkt aus dem KI-Chat, mit wenigen Befehlen, die man sich merken kann. Es schreibt nur Markdown, die App zeigt das Ergebnis.',
         stage: 'later',
       },
     ],
@@ -123,8 +168,8 @@ export const de: Dict = {
         status: 'planned',
       },
       {
-        title: 'Claude-Code-Plugin',
-        text: 'Der Spec-Workflow als eigenständiges Plugin, das den Parser von spectant mitnutzt.',
+        title: 'Spec-Skill für Claude Code',
+        text: 'Der Spec-Workflow als Claude-Code-Plugin, das den Parser von spectant mitnutzt, damit Chat und App immer übereinstimmen.',
         status: 'planned',
       },
       {

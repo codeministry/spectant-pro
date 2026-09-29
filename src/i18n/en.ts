@@ -8,6 +8,8 @@ export const en: Dict = {
     ogLocale: 'en_US',
   },
   nav: {
+    workflow: 'Chat + App',
+    preview: 'Preview',
     how: 'How it works',
     roadmap: 'Roadmap',
     github: 'Watch on GitHub',
@@ -19,7 +21,7 @@ export const en: Dict = {
     badge: 'In active development · pre-release',
     titleA: 'All your specs.',
     titleB: 'One tab.',
-    lead: 'spectant is the local spec companion for developers. One binary reads the Markdown specs in every repository you register and shows where each one stands, what comes next and what needs attention. It runs on your machine, and nothing leaves it.',
+    lead: 'spectant is the local spec companion for developers. One binary reads the Markdown specs in every repository you register and shows where each one stands, what comes next and what needs attention. It comes with a Spec skill for Claude Code, so you drive the work from the AI chat while the app keeps the overview. It runs on your machine, and nothing leaves it.',
     ctaPrimary: 'Watch on GitHub',
     ctaSecondary: 'How it works',
     installSoon: 'coming soon',
@@ -32,6 +34,49 @@ export const en: Dict = {
     repos: 'repos',
     claims: 'claims',
     live: 'live',
+  },
+  duo: {
+    eyebrow: 'Chat + App',
+    title: 'Work in the chat. Keep the overview in the app.',
+    lead: 'spectant comes with a Spec skill for Claude Code. You shape, plan and build your specs right from the AI chat, and the skill writes plain Markdown into your repository. The app runs beside it and shows, live, where every spec stands and what your agents are doing.',
+    chat: {
+      label: 'In the AI chat',
+      badge: 'Claude Code',
+      title: 'The skill does the work',
+      text: 'Turn an idea into spec, plan and tasks, then work the tasks with your agent. A handful of commands you can remember, and every result lands as Markdown in your repo.',
+      lines: [
+        '/spec-implement 002',
+        'Reading specs/002-web-console/tasks.md',
+        'T14 · ISC-334 is takeable, starting',
+        'Probe green, T14 ticked in tasks.md',
+        'Next: T15 waits on your answer to T19',
+      ],
+    },
+    app: {
+      label: 'Beside it, in the app',
+      title: 'The app keeps watch',
+      text: 'Every spec across all your repositories, what comes next, what waits on you and which agent holds which task. You keep control without reading a single log.',
+      rows: [
+        { id: '002', name: 'Web console', stage: 'implementing', progress: '19/26' },
+        { id: '003', name: 'Config loader', stage: 'tasked', progress: '0/13' },
+        { id: '004', name: 'Retention policies', stage: 'closed', progress: '30/30' },
+      ],
+      waiting: 'Waiting on you: T19 · keep the ETag poll?',
+      updated: 'updated just now',
+    },
+    bridge: 'Same Markdown files, no sync in between',
+    agents: 'Built for Claude Code. The skill follows the open Agent Skills format, so other coding agents that load skills should be able to use it too.',
+    planned: {
+      title: 'Planned: chat and app, closer together',
+      items: [
+        { title: 'Answer in the app', text: 'Answer an agent’s open question right where the app shows it. spectant writes your answer into the spec as Markdown, and the agent picks it up on its next run.' },
+        { title: 'MCP server', text: 'spectant offers specs, next steps and open questions as tools, so your agent answers “what is next in this repo?” from the live model instead of guessing.' },
+        { title: 'Open in chat', text: 'Every next step, warning and open question gets a copy action that puts the matching command and its context on your clipboard, as a ready prompt for your chat.' },
+        { title: 'Local model panel', text: 'An opt-in side panel with a local model via Ollama, or your own API key if you choose. It answers questions about your specs and never writes.' },
+        { title: 'Agent feed', text: 'Hooks report every agent step to the app: task started, probe red or green, question asked. The feed behind the live board.' },
+        { title: 'Beyond Claude Code', text: 'The Spec skill for other coding agents that load skills, tested and documented instead of merely assumed.' },
+      ],
+    },
   },
   features: {
     eyebrow: 'What it does',
@@ -56,8 +101,8 @@ export const en: Dict = {
         stage: 'first',
       },
       {
-        title: 'Read-only by design',
-        text: 'spectant never writes into the repositories you register, not even into .git. Your files stay yours.',
+        title: 'Every change traceable',
+        text: 'spectant writes only what you set in the app, like a stage, a review mark or a checkbox. Every change lands in versioned files, so git shows what changed and when.',
         stage: 'first',
       },
       {
@@ -66,8 +111,8 @@ export const en: Dict = {
         stage: 'later',
       },
       {
-        title: 'Claude Code plugin',
-        text: 'Spec-driven work from a plugin with a handful of commands you can remember. It writes only Markdown.',
+        title: 'Spec skill for Claude Code',
+        text: 'Spec-driven work straight from the AI chat, with a handful of commands you can remember. It writes only Markdown, and the app shows the result.',
         stage: 'later',
       },
     ],
@@ -123,8 +168,8 @@ export const en: Dict = {
         status: 'planned',
       },
       {
-        title: 'Claude Code plugin',
-        text: 'The spec workflow as a standalone plugin that shares spectant’s parser.',
+        title: 'Spec skill for Claude Code',
+        text: 'The spec workflow as a Claude Code plugin that shares spectant’s parser, so the chat and the app always agree.',
         status: 'planned',
       },
       {

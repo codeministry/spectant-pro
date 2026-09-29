@@ -26,6 +26,8 @@ const anchor = (id: string) => (home === '/' ? `/#${id}` : `${home}#${id}`);
       <Logo />
     </a>
     <div class="flex items-center gap-1 sm:gap-2">
+      <a href={anchor('workflow')} class="btn btn-ghost btn-sm hidden font-medium lg:inline-flex">{dict.nav.workflow}</a>
+      <a href={anchor('preview')} class="btn btn-ghost btn-sm hidden font-medium lg:inline-flex">{dict.nav.preview}</a>
       <a href={anchor('how')} class="btn btn-ghost btn-sm hidden font-medium md:inline-flex">{dict.nav.how}</a>
       <a href={anchor('roadmap')} class="btn btn-ghost btn-sm hidden font-medium md:inline-flex">{dict.nav.roadmap}</a>
       <ThemeToggle labels={dict.nav.theme} />

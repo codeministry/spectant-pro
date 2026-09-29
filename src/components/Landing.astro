@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import ChatAndApp from './ChatAndApp.astro';
 import Features from './Features.astro';
 import Footer from './Footer.astro';
 import Hero from './Hero.astro';
@@ -21,6 +22,7 @@ const { locale } = Astro.props;
   <Nav locale={locale} />
   <main id="main">
     <Hero locale={locale} />
+    <ChatAndApp locale={locale} />
     <Features locale={locale} />
     <Preview locale={locale} />
     <HowItWorks locale={locale} />

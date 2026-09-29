@@ -16,6 +16,8 @@ export interface RoadmapItem {
 export interface Dict {
   meta: { title: string; description: string; ogLocale: string };
   nav: {
+    workflow: string;
+    preview: string;
     how: string;
     roadmap: string;
     github: string;
@@ -40,6 +42,33 @@ export interface Dict {
     repos: string;
     claims: string;
     live: string;
+  };
+  /** Chat + app: the Spec skill drives the work from the AI chat, the app keeps the overview. */
+  duo: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    chat: {
+      label: string;
+      badge: string;
+      title: string;
+      text: string;
+      /** Demo transcript; the first line is the command the user types. */
+      lines: string[];
+    };
+    app: {
+      label: string;
+      title: string;
+      text: string;
+      /** Demo rows of the mini dashboard. */
+      rows: { id: string; name: string; stage: keyof Dict['board']['stages']; progress: string }[];
+      waiting: string;
+      updated: string;
+    };
+    bridge: string;
+    agents: string;
+    /** Planned chat integration, each item a later spec. */
+    planned: { title: string; items: { title: string; text: string }[] };
   };
   features: {
     eyebrow: string;
