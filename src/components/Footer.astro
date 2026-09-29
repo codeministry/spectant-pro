@@ -1,0 +1,61 @@
+---
+import GithubMark from './GithubMark.astro';
+import Logo from './Logo.astro';
+import { AUTHOR_NAME, AUTHOR_URL, GITHUB_URL, LICENSE_PUBLISHED } from '../site.config';
+import { t } from '../i18n/utils';
+import type { Locale } from '../i18n/types';
+
+interface Props {
+  locale: Locale;
+  /** The closing call to action belongs to the landing page only. */
+  cta?: boolean;
+}
+
+const { locale, cta = true } = Astro.props;
+const dict = t(locale);
+const legalSuffix = dict.footer.legalNote ? ` ${dict.footer.legalNote}` : '';
+---
+
+<footer>
+  {
+    cta && (
+      <div class="mx-auto max-w-6xl px-5 pb-20 sm:px-8">
+        <div class="spec-card px-6 py-12 text-center sm:px-12 sm:py-16" data-accent="lime">
+          <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+            <span class="text-sweep">{dict.footer.ctaTitle}</span>
+          </h2>
+          <p class="mx-auto mt-4 max-w-md text-lg leading-relaxed text-muted">{dict.footer.ctaText}</p>
+          <a href={GITHUB_URL} class="btn btn-primary btn-lg mt-8 rounded-field px-6" target="_blank" rel="noopener noreferrer">
+            <GithubMark class="size-5" />
+            {dict.footer.ctaButton}
+          </a>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="border-t border-line/60">
+    <div class="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-10 text-sm text-muted sm:px-8 md:flex-row md:items-center md:justify-between">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
+        <Logo size="sm" />
+        <span>
+          {dict.footer.madeBy}{' '}
+          <a href={AUTHOR_URL} class="link link-hover text-base-content" target="_blank" rel="noopener noreferrer">{AUTHOR_NAME}</a>
+        </span>
+        {
+          LICENSE_PUBLISHED ? (
+            <a href={`${GITHUB_URL}/blob/main/LICENSE`} class="link link-hover" target="_blank" rel="noopener noreferrer">
+              {dict.footer.license}
+            </a>
+          ) : (
+            <span>{dict.footer.license}</span>
+          )
+        }
+      </div>
+      <nav class="flex gap-5" aria-label="Legal">
+        <a href="/impressum" hreflang="de" class="link link-hover">{dict.footer.imprint}{legalSuffix}</a>
+        <a href="/datenschutz" hreflang="de" class="link link-hover">{dict.footer.privacy}{legalSuffix}</a>
+      </nav>
+    </div>
+  </div>
+</footer>

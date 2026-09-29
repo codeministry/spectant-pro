@@ -1,0 +1,62 @@
+---
+import { t } from '../i18n/utils';
+import type { Locale, RoadmapItem } from '../i18n/types';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = t(locale);
+
+const badge: Record<RoadmapItem['status'], string> = {
+  progress: 'badge-soft badge-warning',
+  next: 'badge-soft badge-primary',
+  planned: 'badge-ghost',
+};
+---
+
+<section id="roadmap" class="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-28">
+  <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+    <div>
+      <p class="eyebrow">{dict.roadmap.eyebrow}</p>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">{dict.roadmap.title}</h2>
+      <p class="mt-4 text-lg leading-relaxed text-muted">{dict.roadmap.lead}</p>
+    </div>
+
+    <ol class="relative">
+      {
+        dict.roadmap.items.map((item, i) => (
+          <li class="relative flex gap-5 pb-8 last:pb-0">
+            {i < dict.roadmap.items.length - 1 && (
+              <span class="absolute left-[0.6875rem] top-7 h-[calc(100%-1.75rem)] w-px bg-line" aria-hidden="true" />
+            )}
+            <span class="relative mt-1 flex size-6 shrink-0 items-center justify-center" aria-hidden="true">
+              {item.status === 'progress' ? (
+                <span class="live-dot" />
+              ) : (
+                <span
+                  class:list={[
+                    'size-3 rounded-full border-2',
+                    item.status === 'next' ? 'border-primary' : 'border-line',
+                  ]}
+                />
+              )}
+            </span>
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <h3 class:list={['font-semibold tracking-tight', item.status === 'planned' && 'text-base-content/75']}>
+                  {item.title}
+                </h3>
+                <span class:list={['badge badge-sm font-mono', badge[item.status]]}>
+                  {dict.roadmap.status[item.status]}
+                </span>
+              </div>
+              <p class="mt-1.5 leading-relaxed text-muted">{item.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

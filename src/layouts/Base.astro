@@ -1,0 +1,92 @@
+---
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/sora';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/global.css';
+import { AUTHOR_NAME, AUTHOR_PERSON, AUTHOR_URL, GITHUB_URL, OG_IMAGE, SITE_NAME, SITE_URL } from '../site.config';
+import { homePath, LOCALES, t } from '../i18n/utils';
+import type { Locale } from '../i18n/types';
+
+interface Props {
+  locale: Locale;
+  /** Path of this page without trailing slash, e.g. `/`, `/de`, `/impressum`. */
+  path: string;
+  title?: string;
+  description?: string;
+  /** Home pages exist in every locale and get hreflang alternates; legal pages do not. */
+  alternates?: boolean;
+  noindex?: boolean;
+}
+
+const { locale, path, title, description, alternates = false, noindex = false } = Astro.props;
+const dict = t(locale);
+const pageTitle = title ?? dict.meta.title;
+const pageDescription = description ?? dict.meta.description;
+const canonical = new URL(path, SITE_URL).href;
+const ogImage = new URL(OG_IMAGE, SITE_URL).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: SITE_NAME,
+  url: SITE_URL,
+  description: dict.meta.description,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'macOS, Linux',
+  softwareVersion: 'pre-release',
+  codeRepository: GITHUB_URL,
+  author: { '@type': 'Person', name: AUTHOR_PERSON, url: AUTHOR_URL, brand: AUTHOR_NAME },
+};
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
+    <link rel="canonical" href={canonical} />
+    {
+      alternates &&
+        LOCALES.map((l) => <link rel="alternate" hreflang={l} href={new URL(homePath(l), SITE_URL).href} />)
+    }
+    {alternates && <link rel="alternate" hreflang="x-default" href={new URL('/', SITE_URL).href} />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={dict.meta.ogLocale} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f1ef" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#221f22" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="min-h-dvh">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-field focus:bg-base-100 focus:px-4 focus:py-2"
+    >
+      {dict.nav.skip}
+    </a>
+    <div class="relative isolate overflow-x-clip">
+      <div class="backdrop" aria-hidden="true"></div>
+      <slot />
+    </div>
+  </body>
+</html>

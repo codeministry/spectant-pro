@@ -1,0 +1,19 @@
+---
+// Renders a Lucide icon inline at build time; nothing ships to the client but the SVG.
+import * as icons from 'lucide-static';
+
+type IconName = Exclude<keyof typeof icons, 'default'>;
+
+interface Props {
+  name: IconName;
+  class?: string;
+}
+
+const { name, class: cls = 'size-5' } = Astro.props;
+const svg = String(icons[name])
+  .replace(/<!--[\s\S]*?-->/, '')
+  .replace('<svg', '<svg aria-hidden="true" focusable="false"')
+  .replace(/class="([^"]*)"/, `class="$1 ${cls}"`);
+---
+
+<Fragment set:html={svg} />

@@ -1,0 +1,333 @@
+@import "tailwindcss";
+
+/* Only the two Spectant themes ship; colours are the Spectant app's spec-light / spec-dark tokens. */
+@plugin "daisyui" {
+  themes: false;
+}
+
+@plugin "daisyui/theme" {
+  name: "spectant-light";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: oklch(98.7% 0.003 39.5); /* #fdfaf9 cards */
+  --color-base-200: oklch(96.1% 0.006 43.3); /* #f6f1ef page */
+  --color-base-300: oklch(93.2% 0.007 39.5); /* #ede7e5 raised */
+  --color-base-content: oklch(26.8% 0.013 320.6); /* #29242a ink */
+  --color-primary: oklch(59.4% 0.102 219.9); /* #1c8ca8 cyan */
+  --color-primary-content: oklch(98.7% 0.003 39.5);
+  --color-secondary: oklch(53.5% 0.154 291.1); /* #7058be violet */
+  --color-secondary-content: oklch(98.7% 0.003 39.5);
+  --color-accent: oklch(56.9% 0.157 134.4); /* #4c8a13 lime */
+  --color-accent-content: oklch(98.7% 0.003 39.5);
+  --color-neutral: oklch(26.8% 0.013 320.6);
+  --color-neutral-content: oklch(98.7% 0.003 39.5);
+  --color-info: oklch(59.4% 0.102 219.9);
+  --color-info-content: oklch(98.7% 0.003 39.5);
+  --color-success: oklch(61.9% 0.13 159.2); /* #269d69 */
+  --color-success-content: oklch(98.7% 0.003 39.5);
+  --color-warning: oklch(65.4% 0.145 64.3); /* #cc7a0a building */
+  --color-warning-content: oklch(98.7% 0.003 39.5);
+  --color-error: oklch(62.7% 0.192 6.6); /* #e14775 */
+  --color-error-content: oklch(98.7% 0.003 39.5);
+
+  --radius-selector: 999px;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+
+  --line: oklch(87.8% 0.008 36.6); /* #dcd5d3 */
+  --muted: oklch(50% 0.008 340.6);
+  --sweep-a: oklch(56.9% 0.157 134.4);
+  --sweep-b: oklch(52% 0.1 219.9);
+  --glow-a: oklch(84.1% 0.204 127.3 / 0.22);
+  --glow-b: oklch(83.8% 0.095 205.7 / 0.28);
+  --dot: oklch(26.8% 0.013 320.6 / 0.1);
+  --logo-a: #4c8a13;
+  --logo-b: #027892;
+  --logo-dot: #7058be;
+  --ant: #417c02;
+  --ant-wave: #7058be;
+}
+
+@plugin "daisyui/theme" {
+  name: "spectant-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: oklch(29% 0.008 317.7); /* #2d2a2e cards */
+  --color-base-200: oklch(24.4% 0.007 325.8); /* #221f22 page */
+  --color-base-300: oklch(36.7% 0.006 314.8); /* #403e41 raised */
+  --color-base-content: oklch(99.1% 0.003 106.4); /* #fcfcfa ink */
+  --color-primary: oklch(83.8% 0.095 205.7); /* #78dce8 cyan */
+  --color-primary-content: oklch(24.4% 0.007 325.8);
+  --color-secondary: oklch(74.1% 0.121 290.7); /* #ab9df2 violet */
+  --color-secondary-content: oklch(24.4% 0.007 325.8);
+  --color-accent: oklch(84.1% 0.204 127.3); /* #a6e22e lime */
+  --color-accent-content: oklch(24.4% 0.007 325.8);
+  --color-neutral: oklch(99.1% 0.003 106.4);
+  --color-neutral-content: oklch(24.4% 0.007 325.8);
+  --color-info: oklch(83.8% 0.095 205.7);
+  --color-info-content: oklch(24.4% 0.007 325.8);
+  --color-success: oklch(84.3% 0.102 139.4); /* #a9dc9c */
+  --color-success-content: oklch(24.4% 0.007 325.8);
+  --color-warning: oklch(89.4% 0.139 90.5); /* #ffd866 building */
+  --color-warning-content: oklch(24.4% 0.007 325.8);
+  --color-error: oklch(70.6% 0.194 8.5); /* #ff6188 */
+  --color-error-content: oklch(24.4% 0.007 325.8);
+
+  --radius-selector: 999px;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+
+  --line: oklch(40.3% 0.009 312.2); /* #4a474c */
+  --muted: oklch(72% 0.004 325.6);
+  --sweep-a: oklch(84.1% 0.204 127.3);
+  --sweep-b: oklch(83.8% 0.095 205.7);
+  --glow-a: oklch(84.1% 0.204 127.3 / 0.14);
+  --glow-b: oklch(83.8% 0.095 205.7 / 0.2);
+  --dot: oklch(99.1% 0.003 106.4 / 0.07);
+  --logo-a: #a6e22e;
+  --logo-b: #78dce8;
+  --logo-dot: #ab9df2;
+  --ant: #a6e22e;
+  --ant-wave: #ab9df2;
+}
+
+@theme {
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora Variable", "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --ease-brand: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-base-200 text-base-content font-sans antialiased;
+    font-variant-numeric: tabular-nums;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-display);
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-primary) 35%, transparent);
+  }
+}
+
+@layer components {
+  /* Headline gradient: the logo's lime-to-cyan sweep. */
+  .text-sweep {
+    background: linear-gradient(110deg, var(--sweep-a), var(--sweep-b));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Page backdrop: a faint dot grid fading out, with two soft brand glows behind the hero. */
+  .backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .backdrop::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+  }
+
+  .backdrop::after {
+    content: "";
+    position: absolute;
+    top: -18rem;
+    left: 50%;
+    width: 64rem;
+    height: 40rem;
+    translate: -50% 0;
+    background:
+      radial-gradient(closest-side at 35% 50%, var(--glow-a), transparent),
+      radial-gradient(closest-side at 65% 50%, var(--glow-b), transparent);
+    filter: blur(40px);
+  }
+
+  /* Spectant card anatomy: 12 px radius, 1 px border, 3 px accent top edge, soft corner glow. */
+  .spec-card {
+    --card-accent: var(--color-primary);
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-box);
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(18rem 10rem at 100% 0%, color-mix(in oklab, var(--card-accent) 10%, transparent), transparent 70%),
+      var(--color-base-100);
+  }
+
+  .spec-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    background: var(--card-accent);
+  }
+
+  .spec-card[data-accent="lime"] { --card-accent: var(--color-accent); }
+  .spec-card[data-accent="violet"] { --card-accent: var(--color-secondary); }
+  .spec-card[data-accent="yellow"] { --card-accent: var(--color-warning); }
+  .spec-card[data-accent="muted"] { --card-accent: var(--line); }
+
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-muted;
+  }
+
+  /* Live indicator: a dot with an expanding ring, paused for reduced motion. */
+  .live-dot {
+    position: relative;
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+  }
+
+  .live-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    animation: live-ping 1.8s var(--ease-brand) infinite;
+  }
+}
+
+@layer components {
+  /* Brand lockup, as in the Spectant app header: bare ring + Sora wordmark, ring turns once on hover. */
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .brand-logo {
+    flex: none;
+    overflow: visible;
+    translate: 0 1px;
+  }
+
+  .brand-stop-a { stop-color: var(--logo-a); }
+  .brand-stop-b { stop-color: var(--logo-b); }
+  .brand-dot { fill: var(--logo-dot); }
+
+  .brand-spin {
+    transform-box: view-box;
+    transform-origin: 256px 256px;
+  }
+
+  .brand-dot {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .brand-word {
+    font-family: var(--font-display);
+    font-weight: 650;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .brand-ant {
+    background: linear-gradient(90deg, var(--ant-wave) 0%, var(--ant-wave) 45%, var(--ant) 55%, var(--ant) 100%);
+    background-size: 200% 100%;
+    background-position: 100% 0%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  :is(a:hover, a:focus-visible) > .brand-mark .brand-spin {
+    animation: brand-spin 1.1s cubic-bezier(0.34, 1.25, 0.64, 1) both;
+  }
+
+  :is(a:hover, a:focus-visible) > .brand-mark .brand-dot {
+    animation: brand-dot 1.1s var(--ease-brand) both, brand-dot-beat 1.6s 1.1s ease-in-out infinite;
+  }
+
+  :is(a:hover, a:focus-visible) > .brand-mark .brand-ant {
+    animation: brand-sweep 1.1s cubic-bezier(0.34, 1.25, 0.64, 1) both, brand-beat 1.6s 1.1s ease-in-out infinite;
+  }
+
+  /* Header rail around the lockup, as in the app. */
+  .brand-rail {
+    display: inline-flex;
+    align-items: center;
+    height: 2.5rem;
+    padding: 0 0.75rem 0 0.25rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: color-mix(in oklab, var(--color-base-100) 78%, transparent);
+  }
+}
+
+@keyframes brand-spin {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+@keyframes brand-dot {
+  0% { scale: 1; }
+  35% { scale: 1.6; }
+  70% { scale: 0.9; }
+  100% { scale: 1.25; }
+}
+
+@keyframes brand-dot-beat {
+  0%, 100% { scale: 1.25; }
+  50% { scale: 1.05; }
+}
+
+@keyframes brand-sweep {
+  from { background-position: 100% 0%; }
+  to { background-position: 0% 0%; }
+}
+
+@keyframes brand-beat {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 14% 0%; }
+}
+
+@keyframes live-ping {
+  0% { transform: scale(1); opacity: 0.7; }
+  80%, 100% { transform: scale(2.8); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .live-dot::after { animation: none; }
+  :is(a:hover, a:focus-visible) > .brand-mark :is(.brand-spin, .brand-dot, .brand-ant) { animation: none; }
+}

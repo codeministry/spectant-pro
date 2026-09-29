@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Spectant OG image</title>
+    <style>
+      @font-face { font-family: "Sora Variable"; src: url("../../node_modules/@fontsource-variable/sora/files/sora-latin-wght-normal.woff2") format("woff2"); font-weight: 100 800; }
+      @font-face { font-family: "Manrope Variable"; src: url("../../node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2") format("woff2"); font-weight: 200 800; }
+      @font-face { font-family: "JetBrains Mono Variable"; src: url("../../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2") format("woff2"); font-weight: 100 800; }
+      * { box-sizing: border-box; margin: 0; }
+      html, body { width: 1200px; height: 630px; overflow: hidden; }
+      body {
+        position: relative;
+        background: #221f22;
+        color: #fcfcfa;
+        font-family: "Manrope Variable", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .dots {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(252, 252, 250, 0.08) 1px, transparent 1px);
+        background-size: 24px 24px;
+        mask-image: radial-gradient(ellipse 90% 80% at 30% 20%, #000 30%, transparent 80%);
+      }
+      .glow {
+        position: absolute;
+        top: -260px;
+        left: -120px;
+        width: 1100px;
+        height: 700px;
+        background:
+          radial-gradient(closest-side at 35% 50%, rgba(166, 226, 46, 0.16), transparent),
+          radial-gradient(closest-side at 65% 50%, rgba(120, 220, 232, 0.22), transparent);
+        filter: blur(40px);
+      }
+      .wrap {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 72px 80px;
+      }
+      .brand { display: flex; align-items: center; gap: 12px; font-family: "Sora Variable", sans-serif; font-size: 44px; font-weight: 650; letter-spacing: -0.01em; }
+      .brand img { width: 64px; height: 64px; }
+      .ant { color: #a6e22e; }
+      h1 { font-family: "Sora Variable", sans-serif; font-size: 96px; font-weight: 600; line-height: 1.02; letter-spacing: -0.04em; }
+      .sweep {
+        background: linear-gradient(110deg, #a6e22e, #78dce8);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .foot { display: flex; align-items: center; justify-content: space-between; }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 22px;
+        border: 1px solid #4a474c;
+        border-radius: 999px;
+        background: rgba(45, 42, 46, 0.8);
+        font-size: 24px;
+        font-weight: 500;
+      }
+      .dot { width: 12px; height: 12px; border-radius: 999px; background: #a6e22e; box-shadow: 0 0 0 6px rgba(166, 226, 46, 0.2); }
+      .url { font-family: "JetBrains Mono Variable", monospace; font-size: 26px; color: #939293; }
+    </style>
+  </head>
+  <body>
+    <div class="glow"></div>
+    <div class="dots"></div>
+    <div class="wrap">
+      <div class="brand">
+        <img src="logo.svg" alt="" />
+        <span>spect<span class="ant">ant</span></span>
+      </div>
+      <h1>All your specs.<br /><span class="sweep">One tab.</span></h1>
+      <div class="foot">
+        <span class="badge"><span class="dot"></span>In active development · coming soon</span>
+        <span class="url">spectant.pro</span>
+      </div>
+    </div>
+  </body>
+</html>

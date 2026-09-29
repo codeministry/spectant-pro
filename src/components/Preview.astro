@@ -1,0 +1,153 @@
+---
+// Screens of the Spectant design prototype (spec 002, the same images as the Spectant README).
+// Thumbnail tabs switch the framed screen; clicking the screen opens it full size in a <dialog>.
+import { getImage, Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import dashboard from '../assets/preview/spec-dashboard.png';
+import status from '../assets/preview/spec-status.png';
+import liveBoard from '../assets/preview/live-board.png';
+import tasks from '../assets/preview/tasks.png';
+import notes from '../assets/preview/notes.png';
+import { t } from '../i18n/utils';
+import type { Locale } from '../i18n/types';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = t(locale);
+
+// Same order as dict.preview.items.
+const shots = [dashboard, status, liveBoard, tasks, notes];
+const full = await Promise.all(shots.map((src) => getImage({ src, width: 1440, format: 'webp' })));
+const items = dict.preview.items.map((item, i) => ({ ...item, src: shots[i], full: full[i].src }));
+---
+
+<section id="preview" class="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-28" data-preview>
+  <div class="max-w-2xl">
+    <div class="flex flex-wrap items-center gap-3">
+      <p class="eyebrow">{dict.preview.eyebrow}</p>
+      <span class="badge badge-sm badge-soft badge-secondary font-mono">{dict.preview.badge}</span>
+    </div>
+    <h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">{dict.preview.title}</h2>
+    <p class="mt-4 text-lg leading-relaxed text-muted">{dict.preview.lead}</p>
+  </div>
+
+  <div
+    class="-mx-5 mt-10 flex snap-x scroll-px-5 gap-2 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:grid-cols-5 sm:overflow-visible sm:px-0"
+    role="tablist"
+    aria-label={dict.preview.eyebrow}
+  >
+    {
+      items.map((item, i) => (
+        <button
+          type="button"
+          role="tab"
+          id={`preview-tab-${i}`}
+          aria-controls={`preview-panel-${i}`}
+          aria-selected={i === 0 ? 'true' : 'false'}
+          tabindex={i === 0 ? 0 : -1}
+          class="preview-tab group w-36 shrink-0 snap-start rounded-field border border-line bg-base-100 p-1.5 text-left transition-colors hover:border-primary/50 aria-selected:border-primary aria-selected:bg-base-300/40 sm:w-auto"
+          data-tab={i}
+        >
+          <Image
+            src={item.src}
+            alt=""
+            width={320}
+            class="aspect-[16/10] w-full rounded-[calc(var(--radius-field)-2px)] object-cover object-top opacity-70 transition-opacity group-hover:opacity-100 group-aria-selected:opacity-100"
+          />
+          <span class="mt-1.5 block truncate px-1 pb-0.5 text-sm font-medium">{item.label}</span>
+        </button>
+      ))
+    }
+  </div>
+
+  <div class="spec-card mt-4" data-accent="violet">
+    <div class="flex items-center gap-3 border-b border-line px-4 py-3">
+      <span class="flex gap-1.5" aria-hidden="true">
+        <span class="size-2.5 rounded-full bg-line"></span>
+        <span class="size-2.5 rounded-full bg-line"></span>
+        <span class="size-2.5 rounded-full bg-line"></span>
+      </span>
+      <span class="flex-1 truncate text-center font-mono text-xs text-muted">127.0.0.1:7717</span>
+      <span class="hidden items-center gap-1.5 text-xs text-muted sm:inline-flex">
+        <Icon name="Maximize2" class="size-3.5" />
+        {dict.preview.open}
+      </span>
+    </div>
+    {
+      items.map((item, i) => (
+        <div role="tabpanel" id={`preview-panel-${i}`} aria-labelledby={`preview-tab-${i}`} hidden={i !== 0}>
+          <button
+            type="button"
+            class="block w-full cursor-zoom-in"
+            data-open={item.full}
+            data-alt={item.alt}
+            aria-label={`${dict.preview.open}: ${item.label}`}
+          >
+            <Image
+              src={item.src}
+              alt={item.alt}
+              widths={[640, 960, 1440]}
+              sizes="(min-width: 1152px) 1088px, 100vw"
+              class="aspect-[16/10] w-full object-cover object-top"
+            />
+          </button>
+        </div>
+      ))
+    }
+  </div>
+
+  <dialog class="modal" data-preview-dialog aria-label={dict.preview.eyebrow}>
+    <div class="modal-box max-h-[92dvh] w-[min(96vw,90rem)] max-w-none overflow-auto bg-base-200 p-0">
+      <form method="dialog" class="sticky top-0 z-10 flex justify-end p-2">
+        <button class="btn btn-circle btn-sm border-line bg-base-100" aria-label={dict.preview.close}>
+          <Icon name="X" class="size-4" />
+        </button>
+      </form>
+      <img data-preview-full alt="" class="-mt-12 block w-full" />
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button tabindex="-1">{dict.preview.close}</button>
+    </form>
+  </dialog>
+</section>
+
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>('[data-preview]')) {
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
+    const dialog = root.querySelector<HTMLDialogElement>('[data-preview-dialog]');
+    const fullImg = root.querySelector<HTMLImageElement>('[data-preview-full]');
+
+    const select = (index: number, focus = false) => {
+      tabs.forEach((tab, i) => {
+        const active = i === index;
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+        panels[i].hidden = !active;
+      });
+      if (focus) tabs[index].focus();
+    };
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => select(i));
+      tab.addEventListener('keydown', (event) => {
+        const step = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
+        if (step === 0) return;
+        event.preventDefault();
+        select((i + step + tabs.length) % tabs.length, true);
+      });
+    });
+
+    for (const opener of root.querySelectorAll<HTMLButtonElement>('[data-open]')) {
+      opener.addEventListener('click', () => {
+        if (!dialog || !fullImg) return;
+        fullImg.src = opener.dataset.open ?? '';
+        fullImg.alt = opener.dataset.alt ?? '';
+        dialog.showModal();
+      });
+    }
+  }
+</script>

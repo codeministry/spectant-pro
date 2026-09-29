@@ -1,0 +1,34 @@
+---
+// Brand lockup as in the Spectant app header: the bare living ring (no badge) next to the wordmark,
+// "spect" in ink and "ant" in lime. On hover the ring turns once and the violet dot pulses.
+import { LOGO_D } from '../assets/logo-path';
+
+interface Props {
+  size?: 'sm' | 'md';
+}
+
+const { size = 'md' } = Astro.props;
+// Nav and footer both render a logo; each needs its own gradient id.
+const gradientId = `logo-sweep-${size}`;
+---
+
+<span class="brand-mark">
+  <svg
+    class:list={['brand-logo', size === 'sm' ? 'size-6' : 'size-7']}
+    viewBox="36 36 440 440"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <defs>
+      <linearGradient id={gradientId} x1="400.3" y1="148.4" x2="169.0" y2="95.0" gradientUnits="userSpaceOnUse">
+        <stop offset="0" class="brand-stop-a"></stop>
+        <stop offset="1" class="brand-stop-b"></stop>
+      </linearGradient>
+    </defs>
+    <g class="brand-spin">
+      <path d={LOGO_D} fill={`url(#${gradientId})`}></path>
+      <circle class="brand-dot" cx="343.04" cy="95.00" r="35.84"></circle>
+    </g>
+  </svg>
+  <span class:list={['brand-word', size === 'sm' ? 'text-base' : 'text-lg']}>spect<span class="brand-ant">ant</span></span>
+</span>
