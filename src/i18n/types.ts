@@ -85,6 +85,8 @@ export interface Dict {
     badge: string;
     open: string;
     close: string;
+    prev: string;
+    next: string;
     /** Same order as the screenshots in Preview.astro. */
     items: { label: string; alt: string }[];
   };

@@ -1,7 +1,10 @@
 ---
 // Screens of the Spectant design prototype (spec 002), from the workspace overview down to a single spec.
-// Thumbnail tabs switch the framed screen; clicking the screen opens it full size in a <dialog>.
+// Thumbnail tabs switch the framed screen; clicking the screen opens a <dialog> with every screen full size in a
+// scroll-snap track: swipe on touch, arrow buttons and keys elsewhere, the caption below, no counter.
+// A screen with a light variant in ../assets/preview/light/ (same file name) shows it in the light theme.
 import { getImage, Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import Icon from './Icon.astro';
 import allWorkspaces from '../assets/preview/all-workspaces.png';
 import workspace from '../assets/preview/workspace-dashboard.png';
@@ -23,8 +26,18 @@ const dict = t(locale);
 
 // Same order as dict.preview.items.
 const shots = [allWorkspaces, workspace, library, dashboard, status, liveBoard, tasks, notes];
-const full = await Promise.all(shots.map((src) => getImage({ src, width: 1440, format: 'webp' })));
-const items = dict.preview.items.map((item, i) => ({ ...item, src: shots[i], full: full[i].src }));
+const lightFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/preview/light/*.png', { eager: true });
+const lightOf = (src: ImageMetadata) => {
+  const name = src.src.split('/').pop()?.split('?')[0].replace(/\.[^.]+\.png$|\.png$/, '');
+  return Object.entries(lightFiles).find(([path]) => path.endsWith(`/${name}.png`))?.[1].default;
+};
+const fullOf = async (src: ImageMetadata) => (await getImage({ src, width: 1440, format: 'webp' })).src;
+const items = await Promise.all(
+  dict.preview.items.map(async (item, i) => {
+    const light = lightOf(shots[i]);
+    return { ...item, src: shots[i], light, full: await fullOf(shots[i]), fullLight: light && (await fullOf(light)) };
+  }),
+);
 ---
 
 <section id="preview" class="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-28" data-preview>
@@ -54,12 +67,17 @@ const items = dict.preview.items.map((item, i) => ({ ...item, src: shots[i], ful
           class="preview-tab group w-36 shrink-0 snap-start rounded-field border border-line bg-base-100 p-1.5 text-left transition-colors hover:border-primary/50 aria-selected:border-primary aria-selected:bg-base-300/40 md:w-auto"
           data-tab={i}
         >
-          <Image
-            src={item.src}
-            alt=""
-            width={320}
-            class="aspect-[16/10] w-full rounded-[calc(var(--radius-field)-2px)] object-cover object-top opacity-70 transition-opacity group-hover:opacity-100 group-aria-selected:opacity-100"
-          />
+          {[item.src, item.light].filter(Boolean).map((src, v) => (
+            <Image
+              src={src!}
+              alt=""
+              width={320}
+              class:list={[
+                'aspect-[16/10] w-full rounded-[calc(var(--radius-field)-2px)] object-cover object-top opacity-70 transition-opacity group-hover:opacity-100 group-aria-selected:opacity-100',
+                item.light && (v === 0 ? 'shot-dark' : 'shot-light'),
+              ]}
+            />
+          ))}
           <span class="mt-1.5 block truncate px-1 pb-0.5 text-sm font-medium">{item.label}</span>
         </button>
       ))
@@ -85,17 +103,18 @@ const items = dict.preview.items.map((item, i) => ({ ...item, src: shots[i], ful
           <button
             type="button"
             class="block w-full cursor-zoom-in"
-            data-open={item.full}
-            data-alt={item.alt}
+            data-open={i}
             aria-label={`${dict.preview.open}: ${item.label}`}
           >
-            <Image
-              src={item.src}
-              alt={item.alt}
-              widths={[640, 960, 1440]}
-              sizes="(min-width: 1152px) 1088px, 100vw"
-              class="aspect-[16/10] w-full object-cover object-top"
-            />
+            {[item.src, item.light].filter(Boolean).map((src, v) => (
+              <Image
+                src={src!}
+                alt={item.alt}
+                widths={[640, 960, 1440]}
+                sizes="(min-width: 1152px) 1088px, 100vw"
+                class:list={['aspect-[16/10] w-full object-cover object-top', item.light && (v === 0 ? 'shot-dark' : 'shot-light')]}
+              />
+            ))}
           </button>
         </div>
       ))
@@ -103,13 +122,53 @@ const items = dict.preview.items.map((item, i) => ({ ...item, src: shots[i], ful
   </div>
 
   <dialog class="modal" data-preview-dialog aria-label={dict.preview.eyebrow}>
-    <div class="modal-box max-h-[92dvh] w-[min(96vw,90rem)] max-w-none overflow-auto bg-base-200 p-0">
-      <form method="dialog" class="sticky top-0 z-10 flex justify-end p-2">
-        <button class="btn btn-circle btn-sm border-line bg-base-100" aria-label={dict.preview.close}>
+    <div class="modal-box flex h-[92dvh] w-[min(96vw,90rem)] max-w-none flex-col overflow-hidden bg-base-200 p-0">
+      <form method="dialog" class="absolute right-2 top-2 z-10">
+        <button class="btn btn-circle btn-sm border-line bg-base-100/90" aria-label={dict.preview.close}>
           <Icon name="X" class="size-4" />
         </button>
       </form>
-      <img data-preview-full alt="" class="-mt-12 block w-full" />
+      <div
+        class="flex min-h-0 flex-1 snap-x snap-mandatory overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        data-track
+      >
+        {
+          items.map((item) => (
+            <figure class="flex h-full w-full shrink-0 snap-center snap-always flex-col overflow-y-auto" data-slide>
+              {[item.full, item.fullLight].filter(Boolean).map((src, v) => (
+                <img
+                  src={src}
+                  alt={item.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class:list={['my-auto w-full', item.fullLight && (v === 0 ? 'shot-dark' : 'shot-light')]}
+                />
+              ))}
+            </figure>
+          ))
+        }
+      </div>
+      <div class="flex items-center gap-3 border-t border-line px-3 py-3 sm:px-4">
+        <button
+          type="button"
+          class="btn btn-ghost btn-sm btn-square hidden disabled:bg-transparent disabled:opacity-30 sm:inline-flex"
+          aria-label={dict.preview.prev}
+          data-prev
+        >
+          <Icon name="ChevronLeft" class="size-4" />
+        </button>
+        <p class="min-w-0 flex-1 text-center text-sm leading-snug text-muted" aria-live="polite" data-caption>
+          {items[0].alt}
+        </p>
+        <button
+          type="button"
+          class="btn btn-ghost btn-sm btn-square hidden disabled:bg-transparent disabled:opacity-30 sm:inline-flex"
+          aria-label={dict.preview.next}
+          data-next
+        >
+          <Icon name="ChevronRight" class="size-4" />
+        </button>
+      </div>
     </div>
     <form method="dialog" class="modal-backdrop">
       <button tabindex="-1">{dict.preview.close}</button>
@@ -122,7 +181,13 @@ const items = dict.preview.items.map((item, i) => ({ ...item, src: shots[i], ful
     const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
     const panels = [...root.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
     const dialog = root.querySelector<HTMLDialogElement>('[data-preview-dialog]');
-    const fullImg = root.querySelector<HTMLImageElement>('[data-preview-full]');
+    const track = root.querySelector<HTMLElement>('[data-track]');
+    const slides = [...root.querySelectorAll<HTMLElement>('[data-slide]')];
+    const caption = root.querySelector<HTMLElement>('[data-caption]');
+    const prev = root.querySelector<HTMLButtonElement>('[data-prev]');
+    const next = root.querySelector<HTMLButtonElement>('[data-next]');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let current = 0;
 
     const select = (index: number, focus = false) => {
       tabs.forEach((tab, i) => {
@@ -144,12 +209,50 @@ const items = dict.preview.items.map((item, i) => ({ ...item, src: shots[i], ful
       });
     });
 
+    // The slide in view drives caption, buttons and which slide screen readers see.
+    const show = (index: number) => {
+      current = index;
+      if (caption) caption.textContent = slides[index]?.querySelector('img')?.alt ?? '';
+      // Both theme variants carry the same alt, so the first image is enough for the caption.
+      if (prev) prev.disabled = index === 0;
+      if (next) next.disabled = index === slides.length - 1;
+      slides.forEach((slide, i) => slide.setAttribute('aria-hidden', String(i !== index)));
+    };
+
+    const go = (index: number) => {
+      if (!track || index < 0 || index >= slides.length) return;
+      track.scrollTo({ left: index * track.clientWidth, behavior: reduceMotion.matches ? 'instant' : 'smooth' });
+    };
+
+    let frame = 0;
+    track?.addEventListener('scroll', () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const index = Math.round(track.scrollLeft / track.clientWidth);
+        if (index !== current) show(index);
+      });
+    });
+
+    prev?.addEventListener('click', () => go(current - 1));
+    next?.addEventListener('click', () => go(current + 1));
+
+    dialog?.addEventListener('keydown', (event) => {
+      const step = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
+      if (step === 0) return;
+      event.preventDefault();
+      go(current + step);
+    });
+
+    // Closing leaves the tab of the last screen seen selected.
+    dialog?.addEventListener('close', () => select(current));
+
     for (const opener of root.querySelectorAll<HTMLButtonElement>('[data-open]')) {
       opener.addEventListener('click', () => {
-        if (!dialog || !fullImg) return;
-        fullImg.src = opener.dataset.open ?? '';
-        fullImg.alt = opener.dataset.alt ?? '';
+        if (!dialog || !track) return;
+        const index = Number(opener.dataset.open);
         dialog.showModal();
+        track.scrollLeft = index * track.clientWidth;
+        show(index);
       });
     }
   }

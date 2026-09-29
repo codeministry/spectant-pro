@@ -120,10 +120,12 @@ export const en: Dict = {
   preview: {
     eyebrow: 'Sneak peek',
     title: 'Where the app is heading.',
-    lead: 'Screens from the design prototype spectant is being built against. Dark theme and demo data: the app does not render these pages yet.',
+    lead: 'Screens from the design prototype spectant is being built against, in your theme and with demo data: the app does not render these pages yet.',
     badge: 'design prototype',
     open: 'Open full size',
     close: 'Close',
+    prev: 'Previous screen',
+    next: 'Next screen',
     items: [
       { label: 'All workspaces', alt: 'Workspace overview: every registered repository as a card with master and spec claims, specs, warnings and next up' },
       { label: 'Workspace', alt: 'Workspace dashboard: master and spec claims, what is takeable now, next up with the command to run, TL;DR, spec list and warnings' },

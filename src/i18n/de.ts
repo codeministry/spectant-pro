@@ -120,10 +120,12 @@ export const de: Dict = {
   preview: {
     eyebrow: 'Vorschau',
     title: 'Wohin die App steuert.',
-    lead: 'Screens aus dem Design-Prototyp, gegen den spectant gebaut wird. Dunkles Theme und Demodaten: Die App zeigt diese Seiten noch nicht.',
+    lead: 'Screens aus dem Design-Prototyp, gegen den spectant gebaut wird, in deinem Theme und mit Demodaten: Die App zeigt diese Seiten noch nicht.',
     badge: 'Design-Prototyp',
     open: 'In voller Größe öffnen',
     close: 'Schließen',
+    prev: 'Vorheriger Screen',
+    next: 'Nächster Screen',
     items: [
       { label: 'Alle Workspaces', alt: 'Workspace-Übersicht: jedes registrierte Repository als Karte mit Master- und Spec-Claims, Specs, Warnungen und Next up' },
       { label: 'Workspace', alt: 'Workspace-Dashboard: Master- und Spec-Claims, was jetzt baubar ist, Next up mit dem nächsten Befehl, TL;DR, Spec-Liste und Warnungen' },

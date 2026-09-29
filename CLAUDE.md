@@ -47,6 +47,7 @@ Astro 7 static site, Tailwind 4 + daisyUI 5, one React island. Deployed as an ng
 |---|---|
 | `src/components/Landing.astro` | the one-pager, rendered by `pages/index.astro` (en) and `pages/de/index.astro` (de) |
 | `src/components/SpecBoard.tsx` | the only React island: animated dashboard mock with demo data, `client:visible`, honours reduced motion |
+| `src/assets/preview/` | preview screens (dark); `light/` holds light variants under the same file name, rendered from the prototype in `oss/spectant` with `spectant-theme=light` |
 | `src/styles/global.css` | daisyUI themes `spectant-light` / `spectant-dark` (tokens from the Spectant app) and brand components |
 | `src/layouts/` | `Base.astro` (head, SEO, hreflang, JSON-LD), `Legal.astro` |
 | `nginx.conf`, `Dockerfile` | runtime image (nginx-unprivileged on 8080, `/health`) |
