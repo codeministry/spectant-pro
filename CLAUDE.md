@@ -34,6 +34,7 @@ Astro 7 static site, Tailwind 4 + daisyUI 5, one React island. Deployed as an ng
 | `bun run verify` | `astro check` + build + `check:dist` gate (routes, CSP meta, canonical, no placeholders) |
 | `bun run preview` | serves `dist/` (Astro 7 backgrounds it; read the printed port) |
 | `bun run og` | re-renders `public/og.png` from `scripts/og/og.html` with headless Chrome |
+| `bun run readme-logo` | re-renders `.github/assets/logo-{dark,light}.png` (Sora 650 wordmark, needs Chrome + `magick`) |
 
 `astro check` needs TypeScript 6; TypeScript 7 is not supported by it yet.
 
