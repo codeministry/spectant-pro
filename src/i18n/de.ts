@@ -80,7 +80,10 @@ export const de: Dict = {
     open: 'In voller Größe öffnen',
     close: 'Schließen',
     items: [
-      { label: 'Spec-Dashboard', alt: 'Spec-Dashboard: Kennzahlen, die Idee, nächster Schritt mit Begründung, Lanes und Bereichskacheln' },
+      { label: 'Alle Workspaces', alt: 'Workspace-Übersicht: jedes registrierte Repository als Karte mit Master- und Spec-Claims, Specs, Warnungen und Next up' },
+      { label: 'Workspace', alt: 'Workspace-Dashboard: Master- und Spec-Claims, was jetzt baubar ist, Next up mit dem nächsten Befehl, TL;DR, Spec-Liste und Warnungen' },
+      { label: 'Bibliothek', alt: 'Bibliothek: alle Pläne, Designs, Entscheidungen und Notizen eines Workspaces, durchsuchbar, veraltete Dokumente markiert' },
+      { label: 'Spec-Dashboard', alt: 'Spec-Dashboard: Kennzahlen, die Idee, nächster Schritt mit Begründung und Lanes, daneben eine Leiste mit dem, was auf dich wartet, Warnungen und Gates' },
       { label: 'Status', alt: 'Statusbereich: warum dieser nächste Schritt, Fortschritt und Gates, wo die Spec steht' },
       { label: 'Live-Board', alt: 'Live-Board: eine Lane pro Spalte, in Arbeit, wartend und gelandet, mit Needs-you-Leiste' },
       { label: 'Tasks', alt: 'Tasks-Tab: Checkbox-Zustände, Lane- und Status-Chips, Probe-Zuordnung' },

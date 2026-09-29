@@ -80,7 +80,10 @@ export const en: Dict = {
     open: 'Open full size',
     close: 'Close',
     items: [
-      { label: 'Spec dashboard', alt: 'Spec dashboard: key numbers, the idea, next step with reason, lanes and area tiles' },
+      { label: 'All workspaces', alt: 'Workspace overview: every registered repository as a card with master and spec claims, specs, warnings and next up' },
+      { label: 'Workspace', alt: 'Workspace dashboard: master and spec claims, what is takeable now, next up with the command to run, TL;DR, spec list and warnings' },
+      { label: 'Library', alt: 'Library: every plan, design, decision and note of a workspace, searchable, with outdated documents flagged' },
+      { label: 'Spec dashboard', alt: 'Spec dashboard: key numbers, the idea, next step with reason and lanes, beside a rail with what waits on you, warnings and gates' },
       { label: 'Status', alt: 'Status area: why this next step, progress and gates, where the spec stands' },
       { label: 'Live board', alt: 'Live board: one lane per column, in flight, waiting and landed, with a needs-you rail' },
       { label: 'Tasks', alt: 'Tasks tab: checkbox states, lane and state chips, probe mapping' },
