@@ -1,0 +1,32 @@
+name: Cleanup Old Packages
+
+# Keeps the GHCR package from growing without bound. Only main builds exist
+# (latest + sha-<7hex>); sp-app follows the latest digest via Image Updater.
+
+on:
+  schedule:
+    - cron: '0 2 * * 0'   # Sundays 02:00 UTC
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Log only, delete nothing'
+        type: boolean
+        default: true
+
+# The called workflow can never have more rights than the caller; without this
+# block the repo default applies and the cleanup fails with 403.
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  images:
+    name: Image — spectant-pro
+    uses: codeministry/helm-charts/.github/workflows/ghcr-cleanup.yml@main
+    with:
+      packages: spectant-pro
+      keep-tagged: 10
+      # ROLLOUT GATE: the "github.event_name == 'schedule' ||" part keeps the SCHEDULED
+      # run in dry-run. Remove it (leaving "inputs.dry-run") once a manual dry-run for
+      # this repo has been checked.
+      dry-run: ${{ github.event_name == 'schedule' || inputs.dry-run }}
