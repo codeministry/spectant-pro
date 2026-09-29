@@ -19,6 +19,8 @@ Astro 7 static site, Tailwind 4 + daisyUI 5, one React island. Deployed as an ng
 - **Brand follows the Spectant design system** (`oss/spectant/specs/002-shell-and-spec-page/.design/prototype/spectant-ui/docs/04-DESIGNSYSTEM.md`):
   Manrope for UI, Sora for the wordmark and display headings, JetBrains Mono for code, self-hosted via Fontsource.
   Never Inter. The logo is the bare living ring (no badge) plus wordmark, "spect" in ink, "ant" in lime.
+- **The name is always lowercase `spectant`** in every visible string (copy, titles, meta, JSON-LD, aria-labels),
+  even at the start of a sentence. Code comments and docs may keep "Spectant".
 - **No inline `style` attributes.** `security.csp` hashes scripts and styles into a CSP meta; inline style attributes
   would be blocked. Use classes; for SVG use presentation attributes.
 - **Astro 7 JSX whitespace:** a line break next to an inline tag produces no space. Write `word{' '}<a>` or keep the

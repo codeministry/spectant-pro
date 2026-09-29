@@ -1,6 +1,6 @@
 // Single source for site-wide constants. Flip GITHUB_URL here once the repository is public.
 export const SITE_URL = 'https://spectant.pro';
-export const SITE_NAME = 'Spectant';
+export const SITE_NAME = 'spectant';
 export const GITHUB_URL = 'https://github.com/codeministry/spectant';
 export const AUTHOR_NAME = 'codeministry';
 export const AUTHOR_URL = 'https://codeministry.de';

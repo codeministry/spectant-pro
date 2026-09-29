@@ -2,9 +2,9 @@ import type { Dict } from './types';
 
 export const de: Dict = {
   meta: {
-    title: 'Spectant: der lokale Spec-Begleiter für Entwickler',
+    title: 'spectant: der lokale Spec-Begleiter für Entwickler',
     description:
-      'Alle Markdown-Specs aus allen Repositories auf einem Live-Dashboard, direkt auf deinem Rechner. Spectant ist in aktiver Entwicklung; verfolge den Fortschritt auf GitHub.',
+      'Alle Markdown-Specs aus allen Repositories auf einem Live-Dashboard, direkt auf deinem Rechner. spectant ist in aktiver Entwicklung; verfolge den Fortschritt auf GitHub.',
     ogLocale: 'de_DE',
   },
   nav: {
@@ -19,7 +19,7 @@ export const de: Dict = {
     badge: 'In aktiver Entwicklung · Pre-Release',
     titleA: 'Alle Specs.',
     titleB: 'Ein Tab.',
-    lead: 'Spectant ist der lokale Spec-Begleiter für Entwickler. Ein einzelnes Binary liest die Markdown-Specs aller Repositories, die du registrierst, und zeigt, wo jede steht, was als Nächstes kommt und was Aufmerksamkeit braucht. Es läuft auf deinem Rechner, und nichts verlässt ihn.',
+    lead: 'spectant ist der lokale Spec-Begleiter für Entwickler. Ein einzelnes Binary liest die Markdown-Specs aller Repositories, die du registrierst, und zeigt, wo jede steht, was als Nächstes kommt und was Aufmerksamkeit braucht. Es läuft auf deinem Rechner, und nichts verlässt ihn.',
     ctaPrimary: 'Auf GitHub folgen',
     ctaSecondary: 'So funktioniert’s',
     installSoon: 'bald verfügbar',
@@ -35,8 +35,8 @@ export const de: Dict = {
   },
   features: {
     eyebrow: 'Was es kann',
-    title: 'Deine Specs bleiben in deinen Repos. Spectant zeigt sie.',
-    lead: 'Die Markdown-Dateien sind die einzige Quelle der Wahrheit. Spectant liest sie, stellt sie nebeneinander und hält Schritt, während du und deine Agenten arbeiten.',
+    title: 'Deine Specs bleiben in deinen Repos. spectant zeigt sie.',
+    lead: 'Die Markdown-Dateien sind die einzige Quelle der Wahrheit. spectant liest sie, stellt sie nebeneinander und hält Schritt, während du und deine Agenten arbeiten.',
     stageFirst: 'erstes Release',
     stageLater: 'später',
     items: [
@@ -57,7 +57,7 @@ export const de: Dict = {
       },
       {
         title: 'Nur lesend, by design',
-        text: 'Spectant schreibt nie in deine registrierten Repositories, nicht einmal in .git. Deine Dateien bleiben deine.',
+        text: 'spectant schreibt nie in deine registrierten Repositories, nicht einmal in .git. Deine Dateien bleiben deine.',
         stage: 'first',
       },
       {
@@ -75,7 +75,7 @@ export const de: Dict = {
   preview: {
     eyebrow: 'Vorschau',
     title: 'Wohin die App steuert.',
-    lead: 'Screens aus dem Design-Prototyp, gegen den Spectant gebaut wird. Dunkles Theme und Demodaten: Die App zeigt diese Seiten noch nicht.',
+    lead: 'Screens aus dem Design-Prototyp, gegen den spectant gebaut wird. Dunkles Theme und Demodaten: Die App zeigt diese Seiten noch nicht.',
     badge: 'Design-Prototyp',
     open: 'In voller Größe öffnen',
     close: 'Schließen',
@@ -94,14 +94,14 @@ export const de: Dict = {
     note: 'Geplante CLI, bis zum ersten Release kann sich noch etwas ändern.',
     steps: [
       { cmd: null, text: 'Installiert ein einzelnes Binary für macOS oder Linux, arm64 oder x64. Kein sudo, keine Änderungen an der Shell.' },
-      { cmd: 'spectant add ~/code/my-project', text: 'Registriert ein Repository. Spectant merkt sich nur den Pfad.' },
+      { cmd: 'spectant add ~/code/my-project', text: 'Registriert ein Repository. spectant merkt sich nur den Pfad.' },
       { cmd: 'spectant', text: 'Öffnet das Dashboard im Browser, ausgeliefert von 127.0.0.1.' },
     ],
   },
   roadmap: {
     eyebrow: 'Öffentlich gebaut',
-    title: 'Wo Spectant heute steht',
-    lead: 'Spectant entsteht Spec für Spec, genau so, wie es dich arbeiten lassen will. Das ist der ehrliche Stand.',
+    title: 'Wo spectant heute steht',
+    lead: 'spectant entsteht Spec für Spec, genau so, wie es dich arbeiten lassen will. Das ist der ehrliche Stand.',
     status: { progress: 'in Arbeit', next: 'als Nächstes', planned: 'geplant' },
     items: [
       {
@@ -121,7 +121,7 @@ export const de: Dict = {
       },
       {
         title: 'Claude-Code-Plugin',
-        text: 'Der Spec-Workflow als eigenständiges Plugin, das Spectants Parser mitnutzt.',
+        text: 'Der Spec-Workflow als eigenständiges Plugin, das den Parser von spectant mitnutzt.',
         status: 'planned',
       },
       {

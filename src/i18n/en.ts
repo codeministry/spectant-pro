@@ -2,9 +2,9 @@ import type { Dict } from './types';
 
 export const en: Dict = {
   meta: {
-    title: 'Spectant: the local spec companion for developers',
+    title: 'spectant: the local spec companion for developers',
     description:
-      'Every Markdown spec from every repository on one live dashboard, running on your machine. Spectant is in active development; follow the build on GitHub.',
+      'Every Markdown spec from every repository on one live dashboard, running on your machine. spectant is in active development; follow the build on GitHub.',
     ogLocale: 'en_US',
   },
   nav: {
@@ -19,7 +19,7 @@ export const en: Dict = {
     badge: 'In active development · pre-release',
     titleA: 'All your specs.',
     titleB: 'One tab.',
-    lead: 'Spectant is the local spec companion for developers. One binary reads the Markdown specs in every repository you register and shows where each one stands, what comes next and what needs attention. It runs on your machine, and nothing leaves it.',
+    lead: 'spectant is the local spec companion for developers. One binary reads the Markdown specs in every repository you register and shows where each one stands, what comes next and what needs attention. It runs on your machine, and nothing leaves it.',
     ctaPrimary: 'Watch on GitHub',
     ctaSecondary: 'How it works',
     installSoon: 'coming soon',
@@ -35,8 +35,8 @@ export const en: Dict = {
   },
   features: {
     eyebrow: 'What it does',
-    title: 'Your specs stay in your repos. Spectant shows them.',
-    lead: 'The Markdown files are the single source of truth. Spectant reads them, puts them side by side and keeps up while you and your agents work.',
+    title: 'Your specs stay in your repos. spectant shows them.',
+    lead: 'The Markdown files are the single source of truth. spectant reads them, puts them side by side and keeps up while you and your agents work.',
     stageFirst: 'first release',
     stageLater: 'later',
     items: [
@@ -57,7 +57,7 @@ export const en: Dict = {
       },
       {
         title: 'Read-only by design',
-        text: 'Spectant never writes into the repositories you register, not even into .git. Your files stay yours.',
+        text: 'spectant never writes into the repositories you register, not even into .git. Your files stay yours.',
         stage: 'first',
       },
       {
@@ -75,7 +75,7 @@ export const en: Dict = {
   preview: {
     eyebrow: 'Sneak peek',
     title: 'Where the app is heading.',
-    lead: 'Screens from the design prototype Spectant is being built against. Dark theme and demo data: the app does not render these pages yet.',
+    lead: 'Screens from the design prototype spectant is being built against. Dark theme and demo data: the app does not render these pages yet.',
     badge: 'design prototype',
     open: 'Open full size',
     close: 'Close',
@@ -94,14 +94,14 @@ export const en: Dict = {
     note: 'Planned CLI, subject to change until the first release.',
     steps: [
       { cmd: null, text: 'Installs a single binary for macOS or Linux, arm64 or x64. No sudo, no shell edits.' },
-      { cmd: 'spectant add ~/code/my-project', text: 'Registers a repository. Spectant only remembers the path.' },
+      { cmd: 'spectant add ~/code/my-project', text: 'Registers a repository. spectant only remembers the path.' },
       { cmd: 'spectant', text: 'Opens the dashboard in your browser, served from 127.0.0.1.' },
     ],
   },
   roadmap: {
     eyebrow: 'Built in public',
-    title: 'Where Spectant stands today',
-    lead: 'Spectant is built spec by spec, the same way it wants you to work. This is the honest state.',
+    title: 'Where spectant stands today',
+    lead: 'spectant is built spec by spec, the same way it wants you to work. This is the honest state.',
     status: { progress: 'in progress', next: 'up next', planned: 'planned' },
     items: [
       {
@@ -121,7 +121,7 @@ export const en: Dict = {
       },
       {
         title: 'Claude Code plugin',
-        text: 'The spec workflow as a standalone plugin that shares Spectant’s parser.',
+        text: 'The spec workflow as a standalone plugin that shares spectant’s parser.',
         status: 'planned',
       },
       {
