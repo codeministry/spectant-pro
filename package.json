@@ -25,7 +25,7 @@
     "@fontsource-variable/sora": "5.3.0",
     "@tailwindcss/vite": "4.3.3",
     "astro": "7.3.5",
-    "daisyui": "5.7.46",
+    "daisyui": "5.7.50",
     "lucide-static": "1.48.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
