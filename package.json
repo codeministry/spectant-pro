@@ -18,13 +18,13 @@
     "favicon": "bun scripts/render-favicon.ts"
   },
   "dependencies": {
-    "@astrojs/react": "7.1.1",
+    "@astrojs/react": "7.1.2",
     "@astrojs/sitemap": "3.7.4",
     "@fontsource-variable/jetbrains-mono": "5.3.0",
     "@fontsource-variable/manrope": "5.3.0",
     "@fontsource-variable/sora": "5.3.0",
     "@tailwindcss/vite": "4.3.3",
-    "astro": "7.4.2",
+    "astro": "7.4.3",
     "daisyui": "5.7.50",
     "lucide-static": "1.61.0",
     "react": "19.3.1",
