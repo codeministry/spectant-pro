@@ -24,7 +24,7 @@
     "@fontsource-variable/manrope": "5.3.0",
     "@fontsource-variable/sora": "5.3.0",
     "@tailwindcss/vite": "4.3.3",
-    "astro": "7.4.3",
+    "astro": "7.4.4",
     "daisyui": "5.7.50",
     "lucide-static": "1.61.0",
     "react": "19.3.1",
