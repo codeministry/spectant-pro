@@ -12,7 +12,7 @@
         "@fontsource-variable/sora": "5.3.0",
         "@tailwindcss/vite": "4.3.5",
         "astro": "7.4.12",
-        "daisyui": "5.7.50",
+        "daisyui": "5.8.0",
         "lucide-static": "1.70.0",
         "react": "19.3.1",
         "react-dom": "19.3.1",
@@ -395,7 +395,7 @@
 
     "csstype": ["csstype@3.2.3", "", {}, "sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ=="],
 
-    "daisyui": ["daisyui@5.7.50", "", {}, "sha512-+/LRqnTCoc7s/bJEKKwtJSwzeXCVdAmRdNmZeZzgHCaQ9PJyl7j+2V2U32GQDMyD+VDkP9e/+JGoC72Y1hLk7w=="],
+    "daisyui": ["daisyui@5.8.0", "", {}, "sha512-pIdff0OLXTgCNvbRZlY2W2qjCnJd7DgRLyTpzhHgg+JqMzVDsQoRzJXyDKyPCOUYvTFHlOt97+JCeGyxQav4Zw=="],
 
     "defu": ["defu@6.1.7", "", {}, "sha512-7z22QmUWiQ/2d0KkdYmANbRUVABpZ9SNYyH5vx6PZ+nE5bcC0l7uFvEfHlyld/HcGBFTL536ClDt3DEcSlEJAQ=="],
 
